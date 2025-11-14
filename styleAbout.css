@@ -32,7 +32,7 @@ body{
 .logo{
     font-size: 30px;
     font-weight: 900;
-    color:#49f6ff
+    color:#49f6ff;
 }
 .navbar ul, .nav-links{
     display: flex;
@@ -76,40 +76,76 @@ body{
     align-items: center;
 }
 .about-text{
-    flex: 1;
-    min-width: 300px;
+    flex: 2;
+    min-width: 400px;
     opacity: 0;
     animation: slideInFade 1s ease-out 0.5s forwards;
 }
 .about-text h1{
     font-size: 50px;
     font-weight: 800;
-    color: #48ff4b;
+    color: #77d6ff;
     margin-bottom: 20px;
 }
 .about-text p{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
     margin-bottom: 15px;
     color: #ccc;
 }
 
-/* Image Section */
-.about-photo{
+/* Image Box & Rotating Ring */
+.image-section{
     flex: 1;
-    text-align: center;
+    display: flex;
+    position: relative;
+    left: 100px
 }
-.about-photo img{
+.image-section .image-box
+{
+    opacity: 0;
+    position:relative;
+    padding: 4px;
+    margin-left: 70px;
     width: 31vw;
     height: 31vw;
-    object-fit: cover;
     border-radius: 50%;
-    opacity: 0.9;
-    transition: transform 0.3s ease;
+    padding: 5px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left: 100px;
+    overflow: hidden;
     animation: slideLeftFade 1s ease-out 0.5s forwards;
 }
-.about-photo img:hover{
-    transform: scale(1.05);
+.image-section .image-box::before,
+.image-section .image-box::after
+{
+    content: '';
+    position: absolute;
+    width: 31vw;
+    height: 31vw;
+    border-radius: 50%;
+    background: conic-gradient(transparent,transparent,#1fff5b);
+    animation: animate 10s linear infinite;
+    z-index: -1;
+    filter: blur(2px);
+}
+.image-section .image-box .image
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #100b26;
+}
+.image-section .image-box .image img
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    mix-blend-mode: lighten;
+    opacity: 0.9;
 }
 
 /* Footer */
@@ -122,6 +158,14 @@ footer{
 }
 
 /* Animations */
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 @keyframes slideInFade{
     0%{ opacity: 0; transform: translateY(-50px);}
     100%{ opacity: 1; transform: translateY(0);}
@@ -134,10 +178,18 @@ footer{
     0%{ opacity: 0; transform: translateY(-100%);}
     100%{ opacity: 1; transform: translateY(0);}
 }
+@keyframes rotateRing{
+    0%{ transform: rotate(0deg);}
+    100%{ transform: rotate(360deg);}
+}
 
 /* Responsive */
 @media (max-width: 768px){
     .navbar{ flex-direction: column; text-align: center;}
     .about-page{ flex-direction: column; padding: 60px 20px;}
-    .about-photo img{ width: 60vw; height: 60vw; margin-top: 20px;}
+    .about-photo{
+        width: 60vw;
+        height: 60vw;
+        margin-top: 20px;
+    }
 }
