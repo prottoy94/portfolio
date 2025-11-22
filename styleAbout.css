@@ -147,6 +147,30 @@ body{
     mix-blend-mode: lighten;
     opacity: 0.9;
 }
+/* Video Section */
+.video-section {
+    width: 100%;
+    padding: 40px 10%;
+    text-align: center;
+    margin-top: -50px;
+}
+
+.video-section h2 {
+    font-size: 32px;
+    color: #77d6ff;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: slideInFade 1s ease-out forwards;
+}
+
+.intro-video {
+    width: 80%;
+    max-width: 800px;
+    border: 3px solid #48ff4b;
+    border-radius: 18px;
+    box-shadow: 0 0 15px #48ff4b;
+    animation: slideLeftFade 1.2s ease-out forwards;
+}
 
 /* Footer */
 footer{
