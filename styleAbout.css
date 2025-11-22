@@ -150,27 +150,45 @@ body{
 /* Video Section */
 .video-section {
     width: 100%;
-    padding: 40px 10%;
+    padding: 60px 10%;
     text-align: center;
-    margin-top: -50px;
+    margin-top: -30px;
 }
 
 .video-section h2 {
     font-size: 32px;
     color: #77d6ff;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     opacity: 0;
     animation: slideInFade 1s ease-out forwards;
 }
 
-.intro-video {
+/* Outer Wrapper to Center the Video */
+.video-frame {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Border + Glow Box */
+.video-border {
     width: 80%;
     max-width: 800px;
-    border: 3px solid #48ff4b;
-    border-radius: 18px;
-    box-shadow: 0 0 15px #48ff4b;
+    padding: 6px;
+    border-radius: 16px;
+    border: 2px solid #48ff4b;
+    box-shadow: 0 0 7px #48ff4b;
     animation: slideLeftFade 1.2s ease-out forwards;
 }
+
+/* Responsive YouTube Frame */
+.video-border iframe {
+    width: 100%;
+    height: 45vw;
+    max-height: 450px;
+    border-radius: 12px;
+}
+
 
 /* Footer */
 footer{
