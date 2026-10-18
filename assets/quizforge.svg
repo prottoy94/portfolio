@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="975" height="445" viewBox="0 0 975 445" role="img" aria-labelledby="title desc">
+  <title id="title">QuizForge question builder</title>
+  <desc id="desc">An instructor dashboard for adding multiple choice quiz questions.</desc>
+  <rect width="975" height="445" fill="#e7e4dc"/>
+  <rect width="153" height="445" fill="#fff"/>
+  <text x="12" y="20" fill="#282722" font-family="Arial,sans-serif" font-size="13" font-weight="700">QuizForge</text>
+  <text x="12" y="38" fill="#918f88" font-family="Arial,sans-serif" font-size="11">Instructor Panel</text>
+  <path d="M0 52h153" stroke="#e5e3de"/>
+  <text x="10" y="75" fill="#96938c" font-family="Arial,sans-serif" font-size="12">Workspace</text>
+  <rect x="9" y="114" width="135" height="26" rx="6" fill="#e7f1ec"/>
+  <text x="19" y="131" fill="#386c58" font-family="Arial,sans-serif" font-size="11" font-weight="700">My Quizzes</text>
+  <text x="18" y="99" fill="#77746c" font-family="Arial,sans-serif" font-size="11">Dashboard</text>
+  <text x="18" y="162" fill="#77746c" font-family="Arial,sans-serif" font-size="11">Analytics</text>
+  <rect x="153" width="822" height="42" fill="#f4f2ed"/>
+  <text x="169" y="25" fill="#59574f" font-family="Arial,sans-serif" font-size="10">My Quizzes  ›  Web Technology</text>
+  <rect x="848" y="10" width="41" height="22" rx="5" fill="#e5e2da"/>
+  <text x="858" y="25" fill="#514f49" font-family="Arial,sans-serif" font-size="10">Back</text>
+  <rect x="895" y="10" width="68" height="22" rx="5" fill="#292824"/>
+  <text x="907" y="25" fill="#fff" font-family="Arial,sans-serif" font-size="9">Publish Quiz</text>
+  <text x="170" y="76" fill="#22211e" font-family="Arial,sans-serif" font-size="20" font-weight="700">Question Builder</text>
+  <text x="170" y="95" fill="#89867e" font-family="Arial,sans-serif" font-size="11">Add, edit, and manage MCQ questions for your quiz</text>
+  <rect x="169" y="108" width="791" height="54" rx="13" fill="#fff"/>
+  <text x="183" y="132" fill="#35332f" font-family="Arial,sans-serif" font-size="13" font-weight="700">Web Technology</text>
+  <rect x="278" y="120" width="34" height="16" rx="8" fill="#fff0cb"/>
+  <text x="285" y="131" fill="#ae822f" font-family="Arial,sans-serif" font-size="8">Draft</text>
+  <text x="183" y="149" fill="#959188" font-family="Arial,sans-serif" font-size="9">40 min · Draft · 0 questions</text>
+  <text x="889" y="140" fill="#3c765f" font-family="Arial,sans-serif" font-size="9">0 total marks</text>
+  <rect x="169" y="177" width="388" height="268" rx="13" fill="#fff"/>
+  <rect x="573" y="177" width="387" height="157" rx="13" fill="#fff"/>
+  <text x="183" y="202" fill="#2f2d29" font-family="Arial,sans-serif" font-size="13" font-weight="700">Add New Question</text>
+  <path d="M182 218h361" stroke="#ece9e2"/>
+  <text x="183" y="239" fill="#514e47" font-family="Arial,sans-serif" font-size="9">Question Text *</text>
+  <rect x="182" y="247" width="362" height="60" rx="7" fill="#fffdf9" stroke="#e5e1d8"/>
+  <text x="193" y="267" fill="#a19d94" font-family="Arial,sans-serif" font-size="11">Enter the question text</text>
+  <text x="183" y="333" fill="#514e47" font-family="Arial,sans-serif" font-size="9">Marks *</text>
+  <rect x="182" y="342" width="177" height="66" rx="7" fill="#fffdf9" stroke="#e5e1d8"/>
+  <text x="193" y="377" fill="#555149" font-family="Arial,sans-serif" font-size="10">1</text>
+  <text x="369" y="333" fill="#514e47" font-family="Arial,sans-serif" font-size="9">Correct Answer *</text>
+  <g font-family="Arial,sans-serif" font-size="9" fill="#514e47">
+    <rect x="369" y="342" width="175" height="25" rx="7" fill="#fffdf9" stroke="#e5e1d8"/><circle cx="385" cy="354" r="5" fill="none" stroke="#98948b"/><text x="399" y="358">Option A</text>
+    <rect x="369" y="372" width="175" height="25" rx="7" fill="#fffdf9" stroke="#e5e1d8"/><circle cx="385" cy="384" r="5" fill="none" stroke="#98948b"/><text x="399" y="388">Option B</text>
+    <rect x="369" y="402" width="175" height="25" rx="7" fill="#fffdf9" stroke="#e5e1d8"/><circle cx="385" cy="414" r="5" fill="none" stroke="#98948b"/><text x="399" y="418">Option C</text>
+  </g>
+  <text x="587" y="202" fill="#2f2d29" font-family="Arial,sans-serif" font-size="13" font-weight="700">Questions</text>
+  <text x="890" y="202" fill="#908c83" font-family="Arial,sans-serif" font-size="9">0 questions　0 pts</text>
+  <path d="M586 218h360" stroke="#ece9e2"/>
+  <text x="707" y="260" fill="#33312c" font-family="Arial,sans-serif" font-size="11" font-weight="700">No questions added yet</text>
+  <text x="635" y="286" fill="#99958c" font-family="Arial,sans-serif" font-size="10">Start by adding your first MCQ question using the form on the left.</text>
+</svg>

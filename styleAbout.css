@@ -93,6 +93,30 @@ body{
     margin-bottom: 15px;
     color: #ccc;
 }
+.research-section{
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 0 9%;
+}
+.research-section h2{
+    color: #77d6ff;
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+.research-section article{
+    border-left: 3px solid #48ff4b;
+    padding: 4px 0 4px 18px;
+    margin-bottom: 18px;
+}
+.research-section h3{
+    color: #49f6ff;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+.research-section p{
+    color: #ccc;
+    font-size: 15px;
+}
 
 /* Image Box & Rotating Ring */
 .image-section{
