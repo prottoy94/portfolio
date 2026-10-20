@@ -70,99 +70,343 @@ body{
 
 /* PAGE LAYOUT */
 .qualification-page{
-  padding: 140px 9% 50px;
+  position: relative;
+  padding: 140px 9% 70px;
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
+  overflow: hidden;
+}
+
+/* Soft background glows that slowly drift */
+.qualification-page::before,
+.qualification-page::after{
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: qFloat 16s ease-in-out infinite alternate;
+}
+
+.qualification-page::before{
+  top: 60px;
+  right: -180px;
+  background: radial-gradient(circle, rgba(72, 255, 75, .12), transparent 65%);
+}
+
+.qualification-page::after{
+  bottom: -120px;
+  left: -200px;
+  background: radial-gradient(circle, rgba(73, 246, 255, .10), transparent 65%);
+  animation-delay: -8s;
+}
+
+.qualification-page .container{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .q-title{
   font-size: 50px;
   font-weight: 800;
+  line-height: 1.2;
   color: #77d6ff;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
+  animation: slideInFade .9s ease-out .2s both;
+}
+
+.q-title::after{
+  content: '';
+  display: block;
+  width: 140px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #48ff4b, #49f6ff, transparent);
 }
 
 .q-title span{
   color: #48ff4b;
+  background: linear-gradient(90deg, #48ff4b, #49f6ff, #48ff4b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: qShimmer 6s linear infinite;
 }
 
 .q-desc{
   color: #ccc;
   font-size: 17px;
-  margin-bottom: 40px;
+  line-height: 1.75;
+  margin-bottom: 50px;
   max-width: 800px;
+  padding-left: 16px;
+  border-left: 2px solid rgba(119, 214, 255, .45);
+  animation: slideInFade .9s ease-out .4s both;
 }
 
-/* QUALIFICATION LIST */
+/* QUALIFICATION LIST (timeline) */
 .qualifications-list {
+  --rail: 76px;       /* space on the left reserved for the timeline */
+  --line-x: 24px;     /* position of the timeline line */
+  --node-size: 44px;  /* size of the numbered circles */
+  position: relative;
   width: 100%;
   margin-top: 10px;
+  padding-left: var(--rail);
   display: flex;
   flex-direction: column;
   gap: 45px;
+  counter-reset: q-step;
+}
+
+/* Timeline line (draws itself on page load) */
+.qualifications-list::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--line-x);
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #48ff4b, #49f6ff 55%, rgba(119, 214, 255, .1));
+  box-shadow: 0 0 12px rgba(72, 255, 75, .45);
+  transform-origin: top;
+  animation: qLineGrow 1.4s cubic-bezier(.2, .8, .2, 1) .5s both;
+}
+
+/* Light that travels down the timeline */
+.qualifications-list::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(var(--line-x) - 1.5px);
+  width: 6px;
+  height: 80px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, transparent, #c9ffca, transparent);
+  filter: drop-shadow(0 0 6px #48ff4b);
+  opacity: 0;
+  pointer-events: none;
+  animation: qTravel 5s ease-in-out 2s infinite;
 }
 
 /* EACH ITEM (CARD + IMAGE) */
 .q-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #161038;
-  padding: 25px;
-  border-radius: 20px;
-  border: 2px solid #48ff4b;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 6px rgba(72, 255, 75, 0.4);
+  gap: 32px;
+  padding: 30px 32px;
+  border-radius: 22px;
+  border: 2px solid transparent;
+  /* card fill + green gradient border that spins on hover */
+  background:
+    linear-gradient(145deg, #1d1440, #140d2d) padding-box,
+    conic-gradient(from var(--q-angle), #48ff4b, #49f6ff 15%, #48ff4b 30%, rgba(72, 255, 75, .4) 55%, #48ff4b 80%) border-box;
+  box-shadow: 0 0 8px rgba(72, 255, 75, .3), 0 20px 50px rgba(0, 0, 0, .25);
+  counter-increment: q-step;
+  animation: qBorderSpin 6s linear infinite paused;
+  transition: opacity .8s ease, transform .6s cubic-bezier(.2, .8, .2, 1), box-shadow .5s ease;
 }
 
-.q-item:hover {
-  transform: translate(12px, -8px);
-  box-shadow: 0 0 20px #48ff4b;
+.q-item:hover,
+.q-item:focus-within {
+  transform: translateY(-8px);
+  box-shadow: 0 0 22px rgba(72, 255, 75, .5), 0 30px 60px rgba(0, 0, 0, .35);
+  animation-play-state: running;
+}
+
+/* Numbered node sitting on the timeline */
+.q-item::before{
+  content: counter(q-step, decimal-leading-zero);
+  position: absolute;
+  top: var(--node-top, 50%);
+  left: calc(var(--line-x) + 1.5px - var(--rail) - var(--node-size) / 2 - 2px);
+  width: var(--node-size);
+  height: var(--node-size);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #100b26;
+  border: 2px solid #48ff4b;
+  color: #48ff4b;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 0 0 6px #100b26, 0 0 14px rgba(72, 255, 75, .55);
+  transform: translateY(var(--node-shift, -50%));
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1), background .4s ease, color .4s ease;
+  animation: qNodePulse 2.8s ease-in-out infinite;
+}
+
+.q-item:hover::before,
+.q-item:focus-within::before{
+  background: #48ff4b;
+  color: #100b26;
+  transform: translateY(var(--node-shift, -50%)) scale(1.12);
+}
+
+/* Spotlight that follows the cursor (position set by scriptQualification.js) */
+.q-item::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(72, 255, 75, .10), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+.q-item:hover::after {
+  opacity: 1;
+}
+
+/* Scroll reveal (classes added by scriptQualification.js) */
+.reveal-ready .q-item{
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-ready .q-item::before{
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal-ready .q-item:not(.is-visible){
+  opacity: 0;
+  transform: translateY(50px) scale(.97);
+}
+
+.reveal-ready .q-item:not(.is-visible)::before{
+  transform: translateY(var(--node-shift, -50%)) scale(0);
 }
 
 /* LEFT SIDE CARD */
 .q-card {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
   text-decoration: none; /* Remove underline */
   color: inherit;         /* Use card text color */
   display: block;         /* Make the whole card clickable */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
 }
 
-.q-card:hover {
-  transform: translateX(8px); /* Optional hover effect */
+.q-card:focus-visible {
+  outline: 2px dashed #49f6ff;
+  outline-offset: 8px;
 }
 
 .q-card h2 {
   font-size: 26px;
+  line-height: 1.3;
   color: #49f6ff;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
+.q-card h2::after{
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #48ff4b, #49f6ff);
+  transition: width .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.q-item:hover .q-card h2::after{
+  width: 120px;
+}
+
+/* Details shown as chips */
 .q-card p {
-  font-size: 15px;
-  margin: 4px 0;
+  display: inline-block;
+  line-height: 1.5;
+  margin: 6px 8px 0 0;
+  padding: 6px 14px;
+  font-size: 14px;
   color: aliceblue;
+  background: rgba(119, 214, 255, .06);
+  border: 1px solid rgba(119, 214, 255, .2);
+  border-radius: 999px;
+  transition: border-color .3s ease, background .3s ease;
+}
+
+.q-card p strong{
+  color: #48ff4b;
+  font-weight: 600;
+}
+
+/* Result / CGPA chip is highlighted */
+.q-card p:last-of-type{
+  background: rgba(72, 255, 75, .08);
+  border-color: rgba(72, 255, 75, .45);
+  box-shadow: 0 0 10px rgba(72, 255, 75, .15);
+}
+
+.q-item:hover .q-card p{
+  border-color: rgba(119, 214, 255, .4);
+}
+
+.q-item:hover .q-card p:last-of-type{
+  border-color: rgba(72, 255, 75, .8);
+}
+
+/* "Visit website" hint (the whole card is a link) */
+.q-card::after{
+  content: 'Visit website \2192';
+  display: block;
+  width: fit-content;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  color: #49f6ff;
+  opacity: .65;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.q-item:hover .q-card::after{
+  opacity: 1;
+  transform: translateX(6px);
 }
 
 /* IMAGE FORMAT */
 .q-item img {
-  width: 230px;
-  height: 165px;
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 270px;
+  height: 185px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-left: 9px;
-  border: 2px solid #49f6ff;
-  box-shadow: 0 0 10px #49f6ff;
-  transition: 0.3s ease;
+  border-radius: 16px;
+  border: 2px solid rgba(73, 246, 255, .8);
+  box-shadow: 0 0 10px rgba(73, 246, 255, .55), 0 18px 40px rgba(0, 0, 0, .35);
+  filter: saturate(.85) brightness(.9);
+  transition: transform .6s cubic-bezier(.2, .8, .2, 1), filter .6s ease, box-shadow .6s ease;
 }
 
-.q-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 4px #49f6ff;
+.q-item:hover img {
+  transform: perspective(900px) rotateY(-8deg) scale(1.04);
+  filter: saturate(1.05) brightness(1);
+  box-shadow: 0 0 18px #49f6ff, -14px 22px 44px rgba(0, 0, 0, .45);
 }
 
 /* ANIMATIONS */
+@property --q-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 @keyframes navbarSlideIn {
   0% { opacity: 0; transform: translateY(-100%);}
   100% { opacity: 1; transform: translateY(0);}
@@ -173,26 +417,95 @@ body{
   100% { opacity: 1; transform: translateY(0);}
 }
 
+@keyframes qBorderSpin {
+  to { --q-angle: 360deg; }
+}
+
+@keyframes qShimmer {
+  to { background-position: 200% center; }
+}
+
+@keyframes qLineGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes qTravel {
+  0% { top: 0; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { top: calc(100% - 80px); opacity: 0; }
+}
+
+@keyframes qNodePulse {
+  0%, 100% { box-shadow: 0 0 0 6px #100b26, 0 0 10px rgba(72, 255, 75, .4); }
+  50% { box-shadow: 0 0 0 6px #100b26, 0 0 24px rgba(72, 255, 75, .9); }
+}
+
+@keyframes qFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, 60px) scale(1.15); }
+}
+
+/* Respect the "reduce motion" system setting */
+@media (prefers-reduced-motion: reduce){
+  .qualification-page::before,
+  .qualification-page::after,
+  .q-title,
+  .q-title span,
+  .q-desc,
+  .qualifications-list::before,
+  .q-item,
+  .q-item::before{
+    animation: none;
+  }
+  .qualifications-list::after{ display: none; }
+  .q-item,
+  .q-item::before,
+  .q-item img{
+    transition: none;
+  }
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px){
   .q-title {
     font-size: 40px;
   }
 
+  .qualifications-list {
+    --rail: 58px;
+    --line-x: 18px;
+    --node-size: 38px;
+  }
+
   .q-item {
     flex-direction: column;
     text-align: center;
     padding: 30px;
+    gap: 22px;
+    --node-top: 30px;
+    --node-shift: 0px;
   }
 
   .q-card {
     padding-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+  }
+
+  .q-card h2::after,
+  .q-card::after {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .q-item img {
     width: 90%;
     height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .q-item:hover img {
+    transform: scale(1.03);
   }
 }
 
@@ -230,11 +543,13 @@ body{
   .qualification-page{ padding: 30px 20px 50px; }
   .q-title{ font-size: 32px; }
   .q-desc{ font-size: 15px; margin-bottom: 30px; }
-  .qualifications-list{ gap: 30px; }
-  .q-item{ padding: 22px 16px; }
+  .q-title::after{ width: 100px; }
+  .qualifications-list{ gap: 30px; --rail: 40px; --line-x: 12px; --node-size: 30px; }
+  .q-item{ padding: 22px 16px; --node-top: 22px; }
+  .q-item::before{ font-size: 11px; box-shadow: 0 0 0 4px #100b26, 0 0 12px rgba(72, 255, 75, .55); }
   .q-item:hover{ transform: translateY(-6px); }
   .q-card h2{ font-size: 20px; overflow-wrap: anywhere; }
-  .q-card p{ font-size: 14px; }
+  .q-card p{ font-size: 13px; padding: 6px 12px; border-radius: 14px; }
   .q-item img{ width: 100%; }
 }
 
