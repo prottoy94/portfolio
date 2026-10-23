@@ -66,7 +66,8 @@ body{
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 100px 9% 50px;
+  /* Keep the content clear of the fixed navigation bar. */
+  padding: 150px 9% 60px;
   overflow: hidden;
 }
 
@@ -116,23 +117,6 @@ body{
   min-width: 480px;      /* guaranteed wider text area on desktop */
   opacity: 0;
   animation: slideInFade 1s ease-out 0.5s forwards;
-}
-
-/* "Open to AI/ML roles" status badge */
-.contact-text::before{
-  content: 'Open to AI/ML roles';
-  display: inline-block;
-  margin-bottom: 18px;
-  padding: 6px 14px 6px 30px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #48ff4b;
-  background: radial-gradient(circle, #48ff4b 0 4px, transparent 5px) 13px center / 10px 10px no-repeat, rgba(72, 255, 75, .08);
-  border: 1px solid rgba(72, 255, 75, .35);
-  border-radius: 999px;
-  animation: cGlow 2.6s ease-in-out infinite;
 }
 
 .contact-text h1{
@@ -431,10 +415,6 @@ footer{
 @keyframes cShimmer {
   to { background-position: 200% center; }
 }
-@keyframes cGlow {
-  0%, 100% { box-shadow: 0 0 0 rgba(72, 255, 75, 0); }
-  50% { box-shadow: 0 0 16px rgba(72, 255, 75, .35); }
-}
 @keyframes cFadeUp {
   0% { opacity: 0; transform: translateY(16px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -451,7 +431,6 @@ footer{
 /* Respect the "reduce motion" system setting */
 @media (prefers-reduced-motion: reduce){
   .contact-page::after,
-  .contact-text::before,
   .contact-text h1,
   .contact-info p,
   .social-icons a{
