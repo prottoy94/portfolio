@@ -346,6 +346,7 @@ body{
   object-fit: cover;
   mix-blend-mode: normal;
   opacity: 1;
+  transform: translateY(60px);
 }
 
 /* Animated title (same style as Home) */

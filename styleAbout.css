@@ -429,10 +429,11 @@ body{
     object-fit: cover;
     mix-blend-mode: lighten;
     opacity: 0.9;
+    transform: translateY(60px);
     transition: transform .6s cubic-bezier(.2, .8, .2, 1), opacity .6s ease;
 }
 .image-section:hover .image-box .image img{
-    transform: scale(1.04);
+    transform: translateY(60px) scale(1.04);
     opacity: 1;
 }
 /* Video Section */
