@@ -338,15 +338,17 @@ body{
   height: 100%;
   border-radius: 50%;
   background: #100b26; /* opaque background so image looks solid */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .image-section .image-box .image img{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  mix-blend-mode: normal;
-  opacity: 1;
-  transform: translateY(60px);
+  width: 64%;
+  height: auto;
+  margin-top: 10%;
+  mix-blend-mode: lighten; /* blends the photo's black background into the circle */
+  opacity: 0.9;
 }
 
 /* Animated title (same style as Home) */
