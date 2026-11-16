@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.setProperty("--my", `${y}px`);
 
         if (reduceMotion) return;
-        const maxTilt = rect.width > 700 ? 2 : 5; // the wide featured card tilts less
+        const maxTilt = 5;
         card.style.setProperty("--rx", `${(0.5 - y / rect.height) * 2 * maxTilt}deg`);
         card.style.setProperty("--ry", `${(x / rect.width - 0.5) * 2 * maxTilt}deg`);
       });

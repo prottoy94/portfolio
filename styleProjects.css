@@ -339,48 +339,6 @@ body{
     outline-offset: 4px;
 }
 
-/* Featured project (the first card) */
-.project-card:first-child{
-    flex-basis: 100%;
-    flex-direction: row;
-}
-.project-card:first-child .project-image{
-    flex: 0 0 52%;
-    aspect-ratio: auto;
-    min-height: 380px;
-    border-radius: 18px 0 0 18px;
-}
-.project-card:first-child .project-image img{
-    position: absolute;
-    inset: 0;
-    object-position: center 25%;
-}
-.project-card:first-child .project-image::after{
-    background: linear-gradient(to right, transparent 60%, rgba(20, 13, 45, .9));
-}
-.project-card:first-child .project-info{
-    justify-content: center;
-    padding: 40px 44px;
-}
-.project-card:first-child .project-info::before{
-    content: 'Featured Project';
-    align-self: flex-start;
-    margin-bottom: 14px;
-    padding-left: 16px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #48ff4b;
-    background: radial-gradient(circle, #48ff4b 0 3.5px, transparent 4.5px) left center / 9px 9px no-repeat;
-}
-.project-card:first-child .project-info h3{
-    font-size: 30px;
-}
-.project-card:first-child .project-link{
-    margin-top: 6px;
-}
-
 /* Animations */
 @keyframes pFadeDown{
     0%{ opacity: 0; transform: translateY(-30px); }
@@ -429,24 +387,6 @@ footer{
     .navbar ul li a, .nav-links a{ font-size: 16px; padding: 6px 12px; }
     .projects-page{ padding-left: 5%; padding-right: 5%; }
     .project-card{ flex-basis: calc((100% - var(--gap)) / 2); }
-    .project-card:first-child .project-image{ flex-basis: 50%; min-height: 340px; }
-    .project-card:first-child .project-info{ padding: 32px; }
-    .project-card:first-child .project-info h3{ font-size: 26px; }
-}
-
-/* Featured card stacks the image on top */
-@media (max-width: 760px){
-    .project-card:first-child{ flex-direction: column; }
-    .project-card:first-child .project-image{
-        flex: none;
-        aspect-ratio: 16 / 10;
-        min-height: 0;
-        border-radius: 18px 18px 0 0;
-    }
-    .project-card:first-child .project-image::after{
-        background: linear-gradient(to bottom, transparent 55%, rgba(20, 13, 45, .85));
-    }
-    .project-card:first-child .project-info{ padding: 24px 24px 28px; }
 }
 
 @media (max-width: 900px){
@@ -477,8 +417,6 @@ footer{
     .project-card{ flex-basis: 100%; }
     .project-info{ padding: 20px 20px 24px; }
     .project-info h3{ font-size: 20px; }
-    .project-card:first-child .project-info{ padding: 22px 20px 26px; }
-    .project-card:first-child .project-info h3{ font-size: 22px; }
 }
 
 @media (max-width: 480px){
